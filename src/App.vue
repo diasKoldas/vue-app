@@ -3,7 +3,12 @@
     <div class="sidebar">
       <div v-if="filters.length">
         <div v-for="(filter, idx) in filters || []" v-bind:key="idx">
-          <Filter :title="filter.title" :options="filter.options" @select="setOptions"/>
+          <Filter
+              ref="filterComponent"
+              :title="filter.title"
+              :options="filter.options"
+              @select="setOptions"
+          />
           <div class="delimiter"/>
         </div>
         <button class="btn" @click="clearOptions">Сбросить все фильтры</button>
@@ -30,8 +35,6 @@
 import {Ticket, Filter} from './components';
 import {airlines, flights} from '../data.json';
 
-console.log('flights',flights);
-
 export default {
   name: 'App',
   components: {
@@ -49,6 +52,7 @@ export default {
     },
     clearOptions() {
       this.selectedOptions = [];
+      this.$refs.filterComponent[0].clearAll()
     }
   },
   computed: {
@@ -67,7 +71,7 @@ export default {
     setTimeout(() => {
       this.filters = [{title: 'Авиакомпании', options: airlines}]
       this.tickets = [...flights]
-    }, 500)
+    }, 1000)
   }
 }
 </script>

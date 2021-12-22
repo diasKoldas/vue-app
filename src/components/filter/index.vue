@@ -12,7 +12,7 @@
           class="filterOptionsItem"
           v-bind:key="key"
       >
-        <input :value="key" :name="key" type="checkbox" :id="key" v-model="selectedOptions" @change="onChange">
+        <input  :value="key" :name="key" type="checkbox" :id="key" v-model="selectedOptions" @change="onChange">
         <label :for="key">{{option}}</label>
       </div>
     </div>
@@ -34,11 +34,12 @@ export default {
   methods: {
     onChange() {
       this.$emit('select', this.selectedOptions);
+    },
+    clearAll(){
+      this.selectedOptions = [];
     }
   }
 }
 </script>
 
-<style scoped>
-@import "./Filter.css";
-</style>
+<style src="./Filter.css"/>

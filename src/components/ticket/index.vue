@@ -66,6 +66,4 @@ export default {
 }
 </script>
 
-<style scoped>
-@import "./Ticket.module.css";
-</style>
+<style src="./Ticket.module.css"/>
